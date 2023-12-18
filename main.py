@@ -1,14 +1,13 @@
 
 from fastapi import FastAPI
+from routes import user
 
 app = FastAPI()
 
-@app.get("/")
-def hello():
-    return {"message": "Hello, world!"}
+
+app.include_router(user.router)
 
 
-
-@app.get("/users")
-def get_user () : 
-    return {"name" : "Nareeya"}
+if __name__ == "__main__":
+    import uvicorn
+    uvicorn.run(app, host="0.0.0.0", port=8000)
